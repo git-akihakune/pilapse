@@ -1,3 +1,4 @@
 docopt
 pytest
 pytest-sugar
+paramiko

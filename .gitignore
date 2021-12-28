@@ -130,3 +130,6 @@ dmypy.json
 
 # my personal notes
 selfnote.md
+
+# sensitive information
+sensitive-*.json
