@@ -2,3 +2,4 @@ docopt
 pytest
 pytest-sugar
 paramiko
+scp

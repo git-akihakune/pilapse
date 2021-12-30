@@ -1,0 +1,3 @@
+{
+    "load-dirs": ["/usr/src/", "~/.local/share/", "/tmp/"]
+}
