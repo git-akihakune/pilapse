@@ -5,6 +5,7 @@
 import json
 import paramiko
 import os.path
+import pytest
 from scp import SCPClient
 from typing import Dict, List
 
@@ -55,6 +56,10 @@ def test_transfer():
     ssh = createSSHClient()
     scp = SCPClient(ssh.get_transport())
     remoteDir = allowedDir(ssh)
-    scp.put('pilapse', recursive=True, remote_path=remoteDir)
+
+    # only transfer files when the package's built
+    if os.path.isdir('wheels'):
+        scp.put('wheels', recursive=True, remote_path=remoteDir)
+    else: pytest.raises("Packages haven't been built")
     scp.close()
     ssh.close()
