@@ -1,5 +1,8 @@
 docopt
 pytest
 pytest-sugar
+pytest-order
 paramiko
 scp
+moviepy
+picamera
