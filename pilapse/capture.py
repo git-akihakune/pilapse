@@ -8,18 +8,13 @@ class camera:
 
         self.camera = PiCamera()
         self.camera.resolution = (length, width)
-
-        # process relative paths
-        if workdir[0] == '~':
-            from pathlib import Path
-            homeDir = str(Path.home())
-            workdir = workdir.replace('~', homeDir, 1)
         
         self._setUpWorkingDir(workdir)
         chdir(workdir)
 
         # camera warm-up time
         sleep(2)
+        
         print(f"Successfully set up camera. Working at {getcwd()}")
 
 
