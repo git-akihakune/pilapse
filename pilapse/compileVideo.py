@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+from .logger import logging
 
 def _naturalSort(sortingList: list[str]) -> list:
     import re
@@ -11,8 +12,11 @@ def _naturalSort(sortingList: list[str]) -> list:
 
 
 def compileVideo(workDir: str, videoName: str, fps: int = 24):
+    # Set up logging 
+    
+
     if not os.path.isdir(workDir):
-        print('No captured image found')
+        logging.error('No captured image found')
     
     import moviepy.video.io.ImageSequenceClip
 
@@ -22,11 +26,12 @@ def compileVideo(workDir: str, videoName: str, fps: int = 24):
         if img.endswith(".jpg")
     ]
 
-    print(f"Images file found: {imageFiles}")
+    logging.info(f"Images found: {imageFiles}")
 
-    video = moviepy.video.io.ImageSequenceClip.ImageSequenceClip(
-        imageFiles, fps=fps
-    )
-    video.write_videofile(os.path.join(workDir, videoName))
-    
-    print("Video file created.")
+    if input("[prompt] Proceed? [y/n]") == 'y':
+        video = moviepy.video.io.ImageSequenceClip.ImageSequenceClip(
+            imageFiles, fps=fps
+        )
+        video.write_videofile(os.path.join(workDir, videoName))
+        
+        logging.success("Video file created successfully.")
