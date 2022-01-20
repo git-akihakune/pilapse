@@ -33,6 +33,9 @@ setup(
     ],
     keywords='pilapse picamera raspberrypi',
     install_requires=[
-
+        'tqdm',
+        'docopt',
+        'moviepy',
+        'picamera'
     ],
 )

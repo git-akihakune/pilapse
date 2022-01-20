@@ -1,8 +1,9 @@
 docopt
+tqdm
+moviepy
+picamera
 pytest
 pytest-sugar
 pytest-order
 paramiko
 scp
-moviepy
-picamera

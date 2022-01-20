@@ -25,6 +25,7 @@ class logger:
             print("{} {}".format("\033[92m[success]\033[00m", text))
 
 
+
 def banner():
     """Print the program's banner"""
     banner = """
@@ -38,3 +39,26 @@ def banner():
     print("Capture & record time lapse videos on Raspberry Pi!")
     print("\033[95m{}\033[00m".format("@akihakune, https://github.com/git-akihakune/pilapse"))
     print()
+
+
+
+def progressBar(duration: int, frequency: int):
+    """Set up progress bar while capturing based on verbosity"""
+    from .arguments import arguments
+    
+    if arguments['--verbose']:
+        from tqdm import tqdm
+        RANGE = tqdm(range(0, duration, frequency))
+    else:
+        RANGE = range(0, duration, frequency)
+    
+    return {'iter': RANGE, 'type': type(RANGE).__name__}
+
+
+def print_statusline(msg: str):
+    import sys
+    last_msg_length = len(print_statusline.last_msg) if hasattr(print_statusline, 'last_msg') else 0
+    print(' ' * last_msg_length, end='\r')
+    print(msg, end='\r')
+    sys.stdout.flush()
+    print_statusline.last_msg = msg

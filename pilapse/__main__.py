@@ -2,7 +2,9 @@
 from .arguments import arguments
 from . import capture
 from .compileVideo import compileVideo
-from .interface import banner
+from .interface import banner, print_statusline
+from time import sleep
+
 
 def main():  
     # print program banner if verbose is set
@@ -14,9 +16,16 @@ def main():
         exit()
 
     camera = capture.camera(workdir=arguments['--save-dir'], length=int(arguments['--length']), width=int(arguments['--width']))
+
     if arguments['capture']:
-        camera.capture(imageName=arguments['--image-name'], singleCapture=True)
+        camera.capture(imageName=arguments['--image-name'], addTime=not self.arguments['--no-time'])
+    
     elif arguments['record']:
+        waitingTime = int(arguments['--shutter-wait'])
+        if waitingTime != 0:
+            for sec in range(0, waitingTime + 1):
+                print_statusline(f"Countdown before record: {waitingTime - sec}")
+                sleep(1)
         camera.record(duration=int(arguments['--duration']), frequency=int(arguments['--frequency']), continuous=arguments['--continuous'])
 
 
