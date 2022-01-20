@@ -2,25 +2,26 @@
 
 class camera:
     def __init__(self, workdir = '~/Videos/pilapse', length: int = 3280, width: int = 2464):
-        from os import chdir, getcwd
-        from picamera import PiCamera
-        from time import sleep
+        # Set up logging
+        from .logger import logging
+        self.log = logging
 
+        # Set up Pi Camera
+        from picamera import PiCamera
         self.camera = PiCamera()
         self.camera.resolution = (length, width)
-
-        # process relative paths
-        if workdir[0] == '~':
-            from pathlib import Path
-            homeDir = str(Path.home())
-            workdir = workdir.replace('~', homeDir, 1)
         
+        # Set up working directory
+        from os import chdir, getcwd
         self._setUpWorkingDir(workdir)
         chdir(workdir)
+        self.log.info(f"Working directory: {getcwd()}")
 
         # camera warm-up time
+        from time import sleep
         sleep(2)
-        print(f"Successfully set up camera. Working at {getcwd()}")
+        
+        self.log.success(f"Successfully set up camera.")
 
 
 
@@ -28,17 +29,18 @@ class camera:
         import os, shutil
 
         if not os.path.exists(workdir):
-            print("Specified save path not found. Creating one.")
+            self.log.info("Specified save path not found. Creating one...")
             os.makedirs(workdir, exist_ok=True)
+            self.log.info(f"Created {workdir}")
         elif not os.listdir(workdir) == []:
             # prompt the user to ask if the specified directory
             # should be deleted
-            print("The specified path seems to already contains files. Continue will overwrite all data in that file.")
-            if (input("Continue? [y/n] ") == "y"):
+            self.log.warning("The specified path seems to already contains files. Continue will overwrite all data in that directory.")
+            if (input("[prompt] Continue and overwrite all files? [y/n] ") == "y"):
                 shutil.rmtree(workdir)
                 os.makedirs(workdir, exist_ok=True)
         else:
-            print(f"{workdir} seems already initiated")
+            self.log.info(f"{workdir} seems already initiated")
 
 
 
@@ -46,7 +48,7 @@ class camera:
         self.camera.capture(imageName)
         if singleCapture:
             import os
-            print(f"Image saved at {os.path.join(os.getcwd(), imageName)}")
+            self.log.success(f"Image saved at {os.path.join(os.getcwd(), imageName)}")
 
 
 
@@ -55,5 +57,5 @@ class camera:
         from time import sleep
         if continuous:
             for filename in self.camera.capture_continuous('img{counter:03d}.jpg'):
-                print(f"Captured {filename}")
+                self.log.info(f"Captured {filename}")
                 sleep(frequency)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from typing import Dict
-
+from .logger import logging
 
 def _createConfigFile(path: str) -> None:
     """overwrite previous config file and create a new one"""
@@ -17,7 +17,7 @@ def _createConfigFile(path: str) -> None:
         with open(CONFIG_FILE_PATH, 'w') as configfile:
             config.write(configfile)
     else:
-        print(f"Config file already exists at {CONFIG_FILE_PATH}.")
+        logging.error(f"Config file already exists at {CONFIG_FILE_PATH}.")
 
 
 def _loadConfig(path: str) -> Dict[str, str]:
