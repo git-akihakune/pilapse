@@ -18,7 +18,7 @@ def main():
     camera = capture.camera(workdir=arguments['--save-dir'], length=int(arguments['--length']), width=int(arguments['--width']))
 
     if arguments['capture']:
-        camera.capture(imageName=arguments['--image-name'])
+        camera.capture(imageName=arguments['--image-name'], addTime=not self.arguments['--no-time'])
     
     elif arguments['record']:
         waitingTime = int(arguments['--shutter-wait'])
