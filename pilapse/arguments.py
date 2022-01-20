@@ -3,8 +3,8 @@
 """piLapse - capture time lapse video on Raspberry Pi.
 
 Usage:
-    pilapse capture [-i <image-name>] [-s <save-dir>] [--verbose]
-    pilapse record [-d <duration> | -c] [-f <frequency>] [-l <length>] [-w <width>] [-s <save-dir>] [-S <wait-time>] [--auto-compile] [--no-text] [--preserve] [--verbose]
+    pilapse capture [-i <image-name>] [-s <save-dir>] [--no-time] [--verbose]
+    pilapse record [-d <duration> | -c] [-f <frequency>] [-l <length>] [-w <width>] [-s <save-dir>] [-S <wait-time>] [--auto-compile] [--no-time] [--preserve] [--verbose]
     pilapse compile [-s <save-dir>] [-o <video-name>] [-F <fps>] [--verbose]
     pilapse (-h | --help)
     pilapse --version
@@ -28,7 +28,7 @@ Options:
 -o --output-video NAME      Set output video name.
 -a --auto-compile           Automatically compile images [default: True].
 -p --preserve               Do not automatically clean up after recording.
--n --no-text                Do not add time in capture mode.
+-n --no-time                Do not add time in capture mode.
 --verbose                   Set to verbose mode.
 --version                   Show version.
 
