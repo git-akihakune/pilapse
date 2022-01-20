@@ -1,6 +1,9 @@
 # pilapse
 Python module to capture time lapse videos on Raspberry Pi
 
+# Status: Under development
+The module is still not usable. Please stay tuned for more updates.
+
 ## Installation
 It's recommended to create a virtual environment, but it's not mandatory:
 ```bash
