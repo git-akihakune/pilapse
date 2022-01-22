@@ -4,7 +4,7 @@
 
 Usage:
     pilapse capture [-i <image-name>] [-s <save-dir>] [--no-time] [--verbose]
-    pilapse record [-d <duration> | -c] [-f <frequency>] [-l <length>] [-w <width>] [-s <save-dir>] [-S <wait-time>] [--auto-compile] [--no-time] [--preserve] [--verbose]
+    pilapse record [-d <duration> | -c] [-f <frequency>] [-l <length>] [-w <width>] [-s <save-dir>] [-S <wait-time>] [--auto-compile] [-o <video-name>] [-F <fps>] [--no-time] [--preserve] [--verbose]
     pilapse compile [-s <save-dir>] [-o <video-name>] [-F <fps>] [--verbose]
     pilapse clean [-s <save-dir>]
     pilapse (-h | --help)

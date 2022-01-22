@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """
-whid: What Have I Done?
-:copyright: (c) 2021 akihakune
+piLapse - Capture time lapse images and compile videos on Raspberry Pi
+:copyright: (c) 2022 akihakune
 :license: MIT, see LICENSE for more details.
 """
 

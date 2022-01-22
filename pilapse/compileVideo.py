@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import os
+from . import cleanup
 from .logger import logging
+from .arguments import arguments
 
 def _naturalSort(sortingList: list[str]) -> list:
     import re
@@ -26,12 +28,16 @@ def compileVideo(workDir: str, videoName: str, fps: int = 24):
         if img.endswith(".jpg")
     ]
 
-    logging.info(f"Images found: {imageFiles}")
+    if input("[prompt] Check compiling images? [y/n] ") == 'y':
+        logging.info(f"Images found: {imageFiles}")
 
-    if input("[prompt] Proceed? [y/n]") == 'y':
+    if input("[prompt] Proceed? [y/n] ") == 'y':
         video = moviepy.video.io.ImageSequenceClip.ImageSequenceClip(
             imageFiles, fps=fps
         )
         video.write_videofile(os.path.join(workDir, videoName))
         
         logging.success("Video file created successfully.")
+    
+    if not arguments['--preserve']:
+        cleanup.clean()

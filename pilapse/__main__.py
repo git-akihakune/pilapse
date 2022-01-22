@@ -32,9 +32,8 @@ def main():
             print()
         camera.record(duration=int(arguments['--duration']), frequency=int(arguments['--frequency']), continuous=arguments['--continuous'])
 
-        # automatically clean up after recording session
-        if not arguments['--preserve']:
-            cleanup.clean()
+        if arguments['--auto-compile']:
+            compileVideo(workDir=arguments['--save-dir'], videoName=arguments['--output-video'], fps=int(arguments['--fps']))
 
 
 if __name__  == "__main__":
