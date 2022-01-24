@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+"""Will be utilized to store cloud service token in the future"""
+
 from typing import Dict
 from .logger import logging
 
