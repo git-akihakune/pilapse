@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name=pilapse.__title__,
+    name='pilapserec',
     version=pilapse.__version__,
     description=pilapse.__description__,
     long_description=long_description,
@@ -31,7 +31,7 @@ setup(
         'Topic :: Utilities',
         'Topic :: Multimedia :: Video :: Capture'
     ],
-    keywords='pilapse picamera raspberrypi',
+    keywords='timelapse video pilapse picamera raspberrypi',
     install_requires=[
         'tqdm',
         'docopt',
