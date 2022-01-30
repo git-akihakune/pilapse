@@ -3,6 +3,12 @@ Python module to capture time lapse videos on Raspberry Pi
 
 ## Examples
 
+![pilapse-demo](https://user-images.githubusercontent.com/87116762/151702712-916586c2-ed8a-4060-8770-02ec639b603b.gif)
+
+
+https://user-images.githubusercontent.com/87116762/151702762-fac77efd-812f-4068-a113-4ebb010a27ea.mp4
+
+
 ## Installation
 It's recommended to create a virtual environment:
 ```bash
