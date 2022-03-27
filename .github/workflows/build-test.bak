@@ -1,0 +1,55 @@
+# Github Action template for later use
+
+# name: Test & Upload to TestPyPI
+
+# on:
+#   push:
+#     branches: [ main ]
+
+#   # Run this workflow manually from the Actions tab
+#   workflow_dispatch:
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v2
+      
+#       - uses: actions/setup-python@v2
+#         with:
+#           python-version: 3.8 
+      
+#       - name: "Installs the package from setup.py"
+#         run: |
+#           # Upgrade pip
+#           python3 -m pip install --upgrade pip
+#           # Install build deps
+#           python3 -m pip install setuptools wheel twine
+#           # If requirements.txt exists, install from it
+#           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+#           # Install the package from setup.py
+#           python3 setup.py install
+      
+#       - name: Test with unittest
+#         run: |
+#           cd tests
+#           python3 -m unittest discover
+#           cd ..
+      
+#   upload:
+#     runs-on: ubuntu-lastest
+
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: actions/setup-python@v2
+#         with:
+#           python-version: 3.8
+#       - name: "Build and upload to TestPyPI"
+#         run: |
+#           python3 setup.py sdist bdist_wheel
+#           python3 -m twine upload dist/*
+#         env:
+#           TWINE_USERNAME: __token__
+#           TWINE_PASSWORD: ${{ secrets.TWINE_TEST_TOKEN }}
+#           TWINE_REPOSITORY: testpypi
